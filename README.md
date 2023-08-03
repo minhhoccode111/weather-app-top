@@ -6,7 +6,7 @@ The Odin Project: Project Weather App
 
 - Working with SVG
 - Using form validation with javaScript before submitting
--
+- Working with fetch, promises, asynchronous
 
 ## Requirement
 
