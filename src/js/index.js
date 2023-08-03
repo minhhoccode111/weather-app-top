@@ -30,54 +30,32 @@ const Info = (() => {
     },
   };
 
-  ////////// current city \\\\\\\\\\
-  const city = Data('Ho Chi Minh');
+  ////////// current state \\\\\\\\\\
+  let _current = {
+    name: '',
+  };
 
-  ////////// current humidity \\\\\\\\\\
-  const humidity = Data('');
-
-  ////////// current date \\\\\\\\\\
-  const date = Data('');
-
-  ////////// current time \\\\\\\\\\
-  const time = Data('');
-
-  ////////// current description \\\\\\\\\\
-  const description = Data('');
-
-  ////////// current temp \\\\\\\\\\
-  const temp = Data('');
-
-  ////////// current feelsLike \\\\\\\\\\
-  const feelsLike = Data('');
-
-  ////////// current icon \\\\\\\\\\
-  const icon = Data('');
-
-  ////////// current windSpeed \\\\\\\\\\
-  const windSpeed = Data('');
-
-  ////////// current chanceRain \\\\\\\\\\
-  const chanceRain = Data('');
+  const current = {
+    get() {
+      return _current;
+    },
+    set(v) {
+      _current = v;
+    },
+  };
 
   return {
-    // key, // api_key isn't needed to make things less complicated
-    city,
-    icon,
+    api, // api_key isn't needed to make things less complicated
     unit,
-    date,
-    time,
-    temp,
-    humidity,
-    windSpeed,
-    chanceRain,
-    description,
+    current,
   };
 })();
 
 // Call to fetch data
 const Request = (() => {
   const weather = (city) => {
+    // ignore if user search the same input
+    if (Info.current.get().name === city) return;
     fetch(`http://api.weatherapi.com/v1/current.json?key=fad6a35f4297467f9ca111534232707&q=${city}`, { mode: 'cors' })
       .then((response) => {
         // check if bad request
@@ -87,12 +65,36 @@ const Request = (() => {
         return response.json();
       })
       .then((data) => {
-        console.table(data.location);
-        console.table(data.current);
-
         // extract data
-        const { name, country, localtime } = data.location;
-        const {} = data.current;
+        const { name, country, localtime_epoch } = data.location;
+        const { text, icon, code } = data.current.condition;
+        const { temp_c, temp_f, wind_kph, wind_mph, wind_degree, humidity, feelslike_c, feelslike_f, uv } = data.current;
+
+        // exchange local epoch time
+        const now = new Date(localtime_epoch * 1000).toLocaleString().split(', ');
+        const [date, time] = [...now];
+
+        const obj = {
+          uv,
+          text,
+          icon,
+          code,
+          name,
+          date,
+          time,
+          temp_c,
+          temp_f,
+          country,
+          wind_kph,
+          wind_mph,
+          humidity,
+          wind_degree,
+          feelslike_c,
+          feelslike_f,
+        };
+
+        Info.current.set(obj);
+        // console.table(obj);
       })
       .catch((err) => {
         console.log(err);
@@ -115,13 +117,33 @@ const Display = (() => {
 (() => {
   const form = document.querySelector('#header_search > form');
   const input = document.querySelector('#search_city');
-  const themeBtn = document.querySelector('.unit change_theme');
-  const unitBtn = document.querySelector('.unit change_unit');
+  const themeBtn = document.querySelector('.unit .change_theme');
+  const unitBtn = document.querySelector('.unit .change_unit');
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     Request.weather(input.value);
     input.value = '';
+  });
+
+  const toggleOnOff = (element) => {
+    // const span = element.querySelector('span');
+    const text = element.textContent;
+    if (text === ' toggle_on ') {
+      element.textContent = ' toggle_off ';
+    } else {
+      element.textContent = ' toggle_on ';
+    }
+  };
+
+  // leave this feature for later
+  themeBtn.addEventListener('click', (e) => {
+    toggleOnOff(e.target);
+  });
+
+  unitBtn.addEventListener('click', (e) => {
+    toggleOnOff(e.target);
+    Info.unit.toggle();
   });
 
   window.addEventListener('DOMContentLoaded', (e) => {

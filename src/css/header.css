@@ -30,6 +30,10 @@
   border-radius: 50%;
   animation: infiniteTurn 6s linear infinite;
 }
+#header_filler {
+  height: 8rem;
+  width: 8rem;
+}
 #header_nav {
   flex-direction: column;
   gap: 1rem;
@@ -81,4 +85,8 @@
   flex-basis: 6rem;
 }
 #header_search button span {
+  user-select: none;
+}
+#header_search a {
+  user-select: none;
 }
