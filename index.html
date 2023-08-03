@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
+    <title>Weather Wise</title>
+    <link rel="stylesheet" href="./src/css/svg.css" />
     <link rel="stylesheet" href="./src/css/main.css" />
     <link rel="stylesheet" href="./src/css/reset.css" />
     <link rel="stylesheet" href="./src/css/style.css" />
@@ -14,11 +15,37 @@
   </head>
   <body>
     <div id="wrapper">
-      <a href="#">sasd</a>
-      <ul>
-        <li>asd</li>
-        <li>asd</li>
-      </ul>
+      <div id="header" class="header">
+        <div class="header_logo">
+          <div class="logo">WW</div>
+        </div>
+        <div class="header_title">
+          <div class="title">Weather Wise</div>
+        </div>
+        <div class="header_units">
+          <div class="unit">
+            <p>&deg;C</p>
+          </div>
+          <div class="unit">
+            <a class="change_unit" type="button">
+              <img src="./src/img/icon/toggle_on_FILL0_wght400_GRAD0_opsz48.svg" alt="Change deg unit" />
+            </a>
+          </div>
+          <div class="unit">
+            <p>&deg;F</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="main" class="main">
+        <h1 id="result">ww</h1>
+      </div>
+
+      <div id="footer" class="footer">
+        <div class="footer_title"></div>
+        <div class="footer_content"></div>
+        <div class="footer_nav"></div>
+      </div>
     </div>
     <script type="module" src="./src/js/index.js" defer></script>
   </body>

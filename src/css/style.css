@@ -10,10 +10,12 @@
 
 :root {
   font-size: 10px;
+  color: white;
 }
 * {
 }
 html {
+  background-color: #333333;
 }
 body {
   font-size: 2rem;
@@ -21,6 +23,7 @@ body {
 }
 a {
   color: unset;
+  text-decoration: unset;
   cursor: pointer;
 }
 #wrapper {

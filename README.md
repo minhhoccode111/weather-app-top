@@ -4,6 +4,9 @@ The Odin Project: Project Weather App
 
 ## What I've learned
 
+- Working with SVG
+-
+
 ## Requirement
 
 - Weather forecast site using the weather API
