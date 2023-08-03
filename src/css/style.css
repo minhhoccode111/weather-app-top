@@ -36,3 +36,6 @@ a {
 .hidden {
   display: none;
 }
+img {
+  /* background-color: #fff; */
+}
