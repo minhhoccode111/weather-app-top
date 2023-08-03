@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Wise</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="./src/css/svg.css" />
     <link rel="stylesheet" href="./src/css/main.css" />
     <link rel="stylesheet" href="./src/css/reset.css" />
     <link rel="stylesheet" href="./src/css/style.css" />
@@ -22,37 +21,91 @@
   <body>
     <div id="wrapper">
       <div id="header" class="header">
-        <div class="header_logo">
-          <div class="logo">WW</div>
-        </div>
-        <div class="header_title">
+        <div id="header_title" class="header_title">
           <div class="title">Weather Wise</div>
         </div>
-        <div class="header_units">
-          <div class="unit">
-            <p>&deg;C</p>
+
+        <div id="header_logo" class="header_logo center">
+          <div class="logo center">WW</div>
+        </div>
+
+        <div id="header_search" class="header_search center">
+          <form class="center">
+            <div class="input_ctn">
+              <label for="search_city" class="center">
+                <input type="text" class="search_city" id="search_city" placeholder="Search Location..." minlength="2" pattern="^[a-zA-Z]+$" />
+
+                <button type="submit" id="search_submit" class="search_submit">
+                  <span class="material-symbols-rounded"> search </span>
+                </button>
+              </label>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="nav" class="nav">
+        <div id="header_nav" class="header_nav">
+          <div class="header_units">
+            <div class="unit">
+              <p>&deg;C</p>
+            </div>
+            <div class="unit">
+              <a class="change_unit" type="button">
+                <span class="material-symbols-rounded"> toggle_off </span>
+              </a>
+            </div>
+            <div class="unit">
+              <p>&deg;F</p>
+            </div>
           </div>
-          <div class="unit">
-            <a class="change_unit" type="button">
-              <!-- <img src="./src/img/icon/dark/toggle_off_FILL0_wght700_GRAD200_opsz48.png" alt="Change deg unit" /> -->
-              <span class="material-symbols-rounded"> toggle_off </span>
-            </a>
+
+          <div class="header_units">
+            <div class="unit">
+              <p>Kilometers</p>
+            </div>
+            <div class="unit">
+              <a class="change_unit" type="button">
+                <span class="material-symbols-rounded"> toggle_off </span>
+              </a>
+            </div>
+            <div class="unit">
+              <p>Miles</p>
+            </div>
           </div>
-          <div class="unit">
-            <p>&deg;F</p>
+
+          <div class="header_units">
+            <div class="unit">
+              <p>Millimeters</p>
+            </div>
+            <div class="unit">
+              <a class="change_unit" type="button">
+                <span class="material-symbols-rounded"> toggle_off </span>
+              </a>
+            </div>
+            <div class="unit">
+              <p>Inches</p>
+            </div>
+          </div>
+
+          <div class="header_units">
+            <div class="unit">
+              <p>Dark</p>
+            </div>
+            <div class="unit">
+              <a class="change_unit" type="button">
+                <span class="material-symbols-rounded"> toggle_on </span>
+              </a>
+            </div>
+            <div class="unit">
+              <p>Light</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div id="main" class="main">
-        <h1 id="result">ww</h1>
-        <div class="form_ctn">
-          <form>
-            <div class="input_ctn">
-              <label for="search_city"><input type="text" class="search_city" id="search_city" placeholder="Search Location..." /></label>
-            </div>
-          </form>
-        </div>
+        <h1 id="result"></h1>
       </div>
 
       <div id="footer" class="footer">

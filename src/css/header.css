@@ -1,5 +1,78 @@
 #header {
+  background-color: rgb(26, 26, 26);
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+#header_title {
+}
+#header_title .title {
+  text-align: center;
+  font-size: 5.2rem;
+  font-weight: bold;
+  padding: 2rem;
+}
+#header_logo {
+  text-align: center;
+}
+#header_logo .logo {
+  font-weight: bolder;
+  font-size: 4rem;
+  height: 8rem;
+  width: 8rem;
+  color: rgb(26, 26, 26);
+  background-color: #ccc;
+  border-radius: 50%;
+  animation: infiniteTurn 6s linear infinite;
+}
+#header_nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+}
+#header_nav > .header_units {
   display: flex;
   align-items: center;
-  background-color: rgb(26, 26, 26);
+  gap: 0.8rem;
+
+  justify-self: center;
+  align-self: center;
+}
+.header_units span {
+  vertical-align: center;
+}
+#header_search {
+}
+#header_search form {
+  width: 100%;
+  max-width: 40rem;
+}
+#header_search .input_ctn {
+  width: 100%;
+}
+#header_search label {
+  flex-direction: row;
+  width: 100%;
+}
+#header_search label input {
+  background-color: unset;
+  color: unset;
+  outline: unset;
+  border: 1px solid white;
+  flex: 1;
+  padding: 1rem;
+  border-radius: 1rem 0 0 1rem;
+}
+#header_search button {
+  color: unset;
+  background-color: unset;
+  cursor: pointer;
+  border-radius: 0 1rem 1rem 0;
+  border: 1px solid white;
+
+  align-self: stretch;
+  flex-basis: 6rem;
+}
+#header_search button span {
 }

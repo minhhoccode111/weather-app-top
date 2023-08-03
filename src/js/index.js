@@ -23,6 +23,14 @@ const Info = (() => {
 })();
 
 (() => {
+  const form = document.querySelector('#header_search > form');
+  const input = document.querySelector('#search_city');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    input.value = '';
+  });
+
   fetch(`http://api.weatherapi.com/v1/current.json?key=${Info.getKey()}&q=${Info.city.get()}`, { mode: 'cors' })
     .then((response) => {
       // check if bad request
