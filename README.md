@@ -5,13 +5,18 @@ The Odin Project: Project Weather App
 ## What I've learned
 
 - Working with SVG
+- Using form validation with javaScript before submitting
 -
 
 ## Requirement
 
 - Weather forecast site using the weather API
 - Search for a specific location
-- Toggle displaying the data in Fahrenheit or Celsius
+- Toggle
+  - displaying the data in Fahrenheit or Celsius
+  - displaying the date in Kilometers or Miles
+  - displaying the data in Millimeters or Inches
+  - Optional: themes
 - Change the look of the page based on the data, maybe by changing the color of the background or by adding images that describe the weather (Could even use the Giphy API to find appropriate weather-related gifs and display them).
 - Try to become comfortable with both Promises and Async|Await
 - Free tier WeatherAPI will limit the forecast data available to 3 days. So keep in mind while making design choices for the forecast display
