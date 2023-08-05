@@ -65,7 +65,34 @@ const Display = (() => {
         element.src = obj.icon;
         continue;
       }
-      element.textContent = obj[key];
+      switch (key) {
+        case 'temp_c':
+          element.textContent = obj.temp_c + ' °C';
+          break;
+        case 'temp_f':
+          element.textContent = obj.temp_f + ' °F';
+          break;
+        case 'feelslike_c':
+          element.textContent = obj.feelslike_c + ' °C';
+          break;
+        case 'feelslike_f':
+          element.textContent = obj.feelslike_f + ' °F';
+          break;
+        case 'humidity':
+          element.textContent = obj.humidity + ' %';
+          break;
+        case 'wind_kph':
+          element.textContent = obj.wind_kph + ' kph';
+          break;
+        case 'wind_mph':
+          element.textContent = obj.wind_mph + ' mph';
+          break;
+        case 'wind_degree':
+          element.textContent = obj.wind_degree + '°';
+          break;
+        default:
+          element.textContent = obj[key];
+      }
     }
   };
 
