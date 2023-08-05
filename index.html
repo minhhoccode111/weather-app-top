@@ -37,7 +37,7 @@
           <form class="center">
             <div class="input_ctn">
               <label for="search_city" class="center">
-                <input type="text" class="search_city" id="search_city" maxlength="40" placeholder="Search Location..." minlength="2" pattern="^\w{2,}[a-zA-Z\s]+$" />
+                <input type="text" class="search_city" id="search_city" maxlength="40" placeholder="Search Location..." minlength="2" pattern="^\w{2,}[a-zA-Z\s,]+$" />
 
                 <button type="submit" id="search_submit" class="search_submit">
                   <span class="material-symbols-rounded"> search </span>
@@ -45,6 +45,11 @@
               </label>
             </div>
           </form>
+          <div id="error" class="hidden">
+            Location not found.
+            <br />
+            Search must be in the form of "City", "City, State" or "City, Country".
+          </div>
         </div>
 
         <div id="header_nav" class="header_nav center">

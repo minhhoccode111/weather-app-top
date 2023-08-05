@@ -55,6 +55,9 @@ const Info = (() => {
 const Display = (() => {
   const units = document.querySelectorAll('[data-unit]');
 
+  // error message
+  const error = document.querySelector('#error');
+
   const ui = () => {
     // display ui base on current obj in Info
     const obj = Info.current.get();
@@ -108,8 +111,14 @@ const Display = (() => {
       element.style.display = 'none';
     });
   };
+
+  const showError = () => error.classList.remove('hidden');
+  const hideError = () => error.classList.add('hidden');
+
   return {
     ui,
+    showError,
+    hideError,
     switchUnit,
   };
 })();
@@ -123,8 +132,10 @@ const Request = (() => {
       .then((response) => {
         // check if bad request
         if (response.status !== 200) {
+          Display.showError();
           throw new Error('Bad Request');
         }
+        Display.hideError();
         return response.json();
       })
       .then((data) => {

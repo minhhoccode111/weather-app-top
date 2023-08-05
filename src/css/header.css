@@ -51,6 +51,7 @@
 }
 #header_search {
   margin: 1rem;
+  flex-direction: column;
 }
 #header_search form {
   width: 100%;
@@ -89,4 +90,11 @@
 }
 #header_search a {
   user-select: none;
+}
+
+#error {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 2rem;
 }
