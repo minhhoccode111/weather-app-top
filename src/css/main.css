@@ -1,0 +1,47 @@
+#main {
+  margin-top: 2rem;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24.4rem, 1fr));
+  grid-template-rows: repeat(auto-fill, 1fr);
+  gap: 2rem;
+}
+#main > * {
+}
+#main .box {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+#main .box .box_icon {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  align-self: stretch;
+  justify-self: center;
+}
+#main .box .box_name {
+  font-size: 1.6rem;
+}
+#main .box .box_data {
+  font-size: 1.6rem;
+}
+
+/* style weather icon */
+img[data-icon] {
+  width: 100%;
+}
+
+@media screen and (max-width: 487px) {
+  #main .box {
+    justify-self: center;
+  }
+  #header {
+    flex-direction: column-reverse;
+  }
+
+  #header #header_filler {
+    display: none;
+  }
+}

@@ -30,7 +30,7 @@ const Info = (() => {
     },
   };
 
-  ////////// current state \\\\\\\\\\
+  ////////// current state object \\\\\\\\\\
   let _current = {
     name: '',
   };
@@ -51,6 +51,42 @@ const Info = (() => {
   };
 })();
 
+// Update UI
+const Display = (() => {
+  const units = document.querySelectorAll('[data-unit]');
+
+  const ui = () => {
+    // display ui base on current obj in Info
+    const obj = Info.current.get();
+
+    for (const key in obj) {
+      const element = document.querySelector(`[data-${key}]`);
+      if (key === 'icon') {
+        element.src = obj.icon;
+        continue;
+      }
+      element.textContent = obj[key];
+    }
+  };
+
+  const switchUnit = () => {
+    // display units base on current unit in Info
+    const current = Info.unit.get();
+    units.forEach((element) => {
+      const eleUnit = element.dataset.unit;
+      if (current === eleUnit) {
+        element.style.display = 'block';
+        return;
+      }
+      element.style.display = 'none';
+    });
+  };
+  return {
+    ui,
+    switchUnit,
+  };
+})();
+
 // Call to fetch data
 const Request = (() => {
   const weather = (city) => {
@@ -67,24 +103,33 @@ const Request = (() => {
       .then((data) => {
         // extract data
         const { name, country, localtime_epoch } = data.location;
-        const { text, icon, code } = data.current.condition;
+
+        // Ignore to update UI if user search the same city
+        if (Info.current.get().name === name) throw new Error('Same city');
+
+        let { text, icon } = data.current.condition;
+
         const { temp_c, temp_f, wind_kph, wind_mph, wind_degree, humidity, feelslike_c, feelslike_f, uv } = data.current;
 
         // exchange local epoch time
         const now = new Date(localtime_epoch * 1000).toLocaleString().split(', ');
         const [date, time] = [...now];
 
+        // exchange icon link to local link
+        // from '//cdn.weatherapi.com/weather/64x64/day/116.png'
+        // to './src/img/weather/64x64/day/116.png'
+        icon = './src/img' + icon.split('api.com')[1];
+
         const obj = {
           uv,
           text,
           icon,
-          code,
           name,
+          country,
           date,
           time,
           temp_c,
           temp_f,
-          country,
           wind_kph,
           wind_mph,
           humidity,
@@ -94,7 +139,8 @@ const Request = (() => {
         };
 
         Info.current.set(obj);
-        // console.table(obj);
+        Display.ui();
+        console.table(obj);
       })
       .catch((err) => {
         console.log(err);
@@ -103,13 +149,6 @@ const Request = (() => {
 
   return {
     weather,
-  };
-})();
-
-const Display = (() => {
-  //
-  return {
-    //
   };
 })();
 
@@ -127,7 +166,6 @@ const Display = (() => {
   });
 
   const toggleOnOff = (element) => {
-    // const span = element.querySelector('span');
     const text = element.textContent;
     if (text === ' toggle_on ') {
       element.textContent = ' toggle_off ';
@@ -144,6 +182,7 @@ const Display = (() => {
   unitBtn.addEventListener('click', (e) => {
     toggleOnOff(e.target);
     Info.unit.toggle();
+    Display.switchUnit();
   });
 
   window.addEventListener('DOMContentLoaded', (e) => {
