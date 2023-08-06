@@ -1,22 +1,18 @@
 'use strict';
 
-// factory function
-const Data = (initValue) => {
-  let _value = initValue;
-
-  const get = () => _value;
-  const set = (v) => (_value = v);
-
-  return {
-    get,
-    set,
-  };
-};
-
 // App's state
 const Info = (() => {
   //////////// api key \\\\\\\\\\
-  const api = Data('fad6a35f4297467f9ca111534232707');
+  const _api = 'fad6a35f4297467f9ca111534232707';
+
+  const api = {
+    get() {
+      return _api;
+    },
+    set(v) {
+      _api = v;
+    },
+  };
 
   //////////// Fahrenheit or Celsius \\\\\\\\\\
   let _unit = 'c';
