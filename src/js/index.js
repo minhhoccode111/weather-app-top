@@ -182,11 +182,13 @@ const Request = (() => {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.table(data);
+        console.dir(data);
       })
       .catch((err) => {
         console.log(err);
       });
+    // TODO implement 'loading' component
+    // Display.hideLoading()
   };
 
   return {
@@ -202,6 +204,8 @@ const Request = (() => {
   const unitBtn = document.querySelector('.unit .change_unit');
 
   form.addEventListener('submit', (e) => {
+    // TODO implement a 'loading' component
+    // Display.showLoading()
     e.preventDefault();
     Request.weather(input.value);
     input.value = '';
