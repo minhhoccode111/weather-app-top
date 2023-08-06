@@ -125,9 +125,7 @@ const Request = (() => {
   const weather = (city) => {
     // ignore if user search the same input
     if (Info.current.get().name === city) return;
-
-    // fetch api
-    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${api}&q=${city}&days=3`, { mode: 'cors' })
+    fetch(`http://api.weatherapi.com/v1/current.json?key=${api}&q=${city}`, { mode: 'cors' })
       .then((response) => {
         // check if bad request
         if (response.status !== 200) {
@@ -138,22 +136,18 @@ const Request = (() => {
         return response.json();
       })
       .then((data) => {
-        console.table(data);
-
-        console.table(data.forecast.forecastday);
-
         // extract data
-        const { name, country, localtime } = data.location;
+        const { name, country, localtime_epoch } = data.location;
 
         // Ignore to update UI if user search the same city
-        if (Info.current.get().name === name) throw new Error('Just search same city.');
+        if (Info.current.get().name === name) throw new Error('Same city');
 
         let { text, icon } = data.current.condition;
 
         const { temp_c, temp_f, wind_kph, wind_mph, wind_degree, humidity, feelslike_c, feelslike_f, uv } = data.current;
 
         // exchange local epoch time
-        const now = localtime.split(' ');
+        const now = new Date(localtime_epoch * 1000).toLocaleString().split(', ');
         const [date, time] = [...now];
 
         // exchange icon link to local link
@@ -181,7 +175,14 @@ const Request = (() => {
 
         Info.current.set(obj);
         Display.ui();
-        // console.table(obj);
+        console.table(obj);
+
+        // fetch forecast and return new promise
+        return fetch(`https://api.weatherapi.com/v1/forecast.json?key=${api}&q=${city}&days=5`, { mode: 'cors' });
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.dir(data);
       })
       .catch((err) => {
         console.log(err);
