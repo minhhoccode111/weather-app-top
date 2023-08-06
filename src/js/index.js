@@ -41,7 +41,7 @@ const Info = (() => {
   };
 
   return {
-    api, // api_key isn't needed to make things less complicated
+    api,
     unit,
     current,
   };
@@ -121,10 +121,11 @@ const Display = (() => {
 
 // Call to fetch data
 const Request = (() => {
+  const api = Info.api.get();
   const weather = (city) => {
     // ignore if user search the same input
     if (Info.current.get().name === city) return;
-    fetch(`http://api.weatherapi.com/v1/current.json?key=fad6a35f4297467f9ca111534232707&q=${city}`, { mode: 'cors' })
+    fetch(`http://api.weatherapi.com/v1/current.json?key=${api}&q=${city}`, { mode: 'cors' })
       .then((response) => {
         // check if bad request
         if (response.status !== 200) {
@@ -175,6 +176,13 @@ const Request = (() => {
         Info.current.set(obj);
         Display.ui();
         console.table(obj);
+
+        // fetch forecast and return new promise
+        return fetch(`https://api.weatherapi.com/v1/forecast.json?key=${api}&q=${city}&days=5`, { mode: 'cors' });
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.table(data);
       })
       .catch((err) => {
         console.log(err);
