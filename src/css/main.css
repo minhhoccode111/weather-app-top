@@ -1,16 +1,15 @@
 .hero_title {
-  margin-top: 4rem;
   text-align: center;
   font-weight: bolder;
-  font-size: 4rem;
+  font-size: 2.8rem;
 }
 
 #main__ctn {
   position: relative;
+  margin: 2rem 0 10rem;
 }
 
 #main {
-  margin-top: 2rem;
   padding: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(24.4rem, 1fr));
@@ -41,6 +40,22 @@
 
 /* style weather icon */
 img[data-icon] {
+  width: 100%;
+}
+
+/* display giphy image */
+#giphy__weather__ctn {
+}
+#giphy__weather__ctn h1 {
+}
+
+.giphy__img__ctn {
+  width: 100%;
+  max-width: 40rem;
+  margin: 2rem auto;
+}
+
+.giphy__img__ctn img {
   width: 100%;
 }
 

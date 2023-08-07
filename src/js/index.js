@@ -3,14 +3,20 @@
 // App's state
 const Info = (() => {
   //////////// api key \\\\\\\\\\
-  const _api = 'fad6a35f4297467f9ca111534232707';
+  const _api_weather = 'fad6a35f4297467f9ca111534232707';
+
+  const _api_giphy = 'eEAr53aADWxwZpoq6X8ncnvCdHgE92Rb';
 
   const api = {
-    get() {
-      return _api;
+    weather: {
+      get() {
+        return _api_weather;
+      },
     },
-    set(v) {
-      _api = v;
+    giphy: {
+      get() {
+        return _api_giphy;
+      },
     },
   };
 
@@ -56,6 +62,9 @@ const Display = (() => {
 
   // loading component
   const loading = document.querySelector('#loading');
+
+  // giphy image container
+  const img = document.querySelector('#giphy__img');
 
   const ui = () => {
     // display ui base on current obj in Info
@@ -111,20 +120,17 @@ const Display = (() => {
     });
   };
 
+  const setGiphy = (url) => (img.src = url);
+
   const showError = () => error.classList.remove('hidden');
   const hideError = () => error.classList.add('hidden');
 
-  const showLoading = () => {
-    console.log('show loading');
-    loading.classList.remove('hidden');
-  };
-  const hideLoading = () => {
-    console.log('hide loading');
-    loading.classList.add('hidden');
-  };
+  const showLoading = () => loading.classList.remove('hidden');
+  const hideLoading = () => loading.classList.add('hidden');
 
   return {
     ui,
+    setGiphy,
     showError,
     hideError,
     switchUnit,
@@ -135,74 +141,95 @@ const Display = (() => {
 
 // Call to fetch data
 const Request = (() => {
-  const api = Info.api.get();
-  const weather = (city) => {
+  const apiWeather = Info.api.weather.get();
+
+  const apiGiphy = Info.api.giphy.get();
+
+  const giphy = async (currentWeather) => {
+    try {
+      // request giphy with text (e.g. Partly cloudy)
+      const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${apiGiphy}&s=${currentWeather}`, { mode: 'cors' });
+
+      if (response.status !== 200) {
+        throw new Error('Cannot find Giphy');
+      }
+
+      const data = await response.json();
+
+      const giphyLink = data.data.images.original.url;
+
+      Display.setGiphy(giphyLink);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const weather = async (city) => {
     // ignore if user search the same input
     if (Info.current.get().name === city) return;
-
-    // fetch api
-    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${api}&q=${city}&days=3`, { mode: 'cors' })
-      .then((response) => {
-        // check if bad request
-        if (response.status !== 200) {
-          Display.showError();
-          Display.hideLoading();
-          throw new Error('Bad Request');
-        }
-        Display.hideError();
-        return response.json();
-      })
-      .then((data) => {
-        console.table(data.forecast.forecastday);
-
-        // extract data
-        const { name, country, localtime } = data.location;
-
-        // Ignore to update UI if user search the same city
-        if (Info.current.get().name === name) throw new Error('Just search same city.');
-
-        let { text, icon } = data.current.condition;
-
-        const { temp_c, temp_f, wind_kph, wind_mph, wind_degree, humidity, feelslike_c, feelslike_f, uv } = data.current;
-
-        // exchange local epoch time
-        const now = localtime.split(' ');
-        const [date, time] = [...now];
-
-        // exchange icon link to local link
-        // from '//cdn.weatherapi.com/weather/64x64/day/116.png'
-        // to './src/img/weather/64x64/day/116.png'
-        icon = './src/img' + icon.split('api.com')[1];
-
-        const obj = {
-          uv,
-          text,
-          icon,
-          name,
-          country,
-          date,
-          time,
-          temp_c,
-          temp_f,
-          wind_kph,
-          wind_mph,
-          humidity,
-          wind_degree,
-          feelslike_c,
-          feelslike_f,
-        };
-
-        Info.current.set(obj);
-        Display.ui();
+    try {
+      // fetch api
+      const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiWeather}&q=${city}&days=3`, { mode: 'cors' });
+      // check if bad request
+      if (response.status !== 200) {
+        Display.showError();
         Display.hideLoading();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        throw new Error('Bad Request');
+      }
+      Display.hideError();
+      const data = await response.json();
+
+      // extract data
+      const { name, country, localtime } = data.location;
+
+      // Ignore to update UI if user search the same city
+      if (Info.current.get().name === name) throw new Error('Just search same city.');
+
+      let { text, icon } = data.current.condition;
+
+      const { temp_c, temp_f, wind_kph, wind_mph, wind_degree, humidity, feelslike_c, feelslike_f, uv } = data.current;
+
+      // exchange local epoch time
+      const now = localtime.split(' ');
+      const [date, time] = [...now];
+
+      // exchange icon link to local link
+      // from '//cdn.weatherapi.com/weather/64x64/day/116.png'
+      // to './src/img/weather/64x64/day/116.png'
+      icon = './src/img' + icon.split('api.com')[1];
+
+      const obj = {
+        uv,
+        text,
+        icon,
+        name,
+        country,
+        date,
+        time,
+        temp_c,
+        temp_f,
+        wind_kph,
+        wind_mph,
+        humidity,
+        wind_degree,
+        feelslike_c,
+        feelslike_f,
+      };
+
+      Info.current.set(obj);
+      Display.ui();
+      Display.hideLoading();
+
+      // use giphy function, search with 'text' (current weather description)
+      giphy(text);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return {
     weather,
+    giphy,
   };
 })();
 
