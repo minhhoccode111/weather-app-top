@@ -138,8 +138,6 @@ const Request = (() => {
         return response.json();
       })
       .then((data) => {
-        console.table(data);
-
         console.table(data.forecast.forecastday);
 
         // extract data

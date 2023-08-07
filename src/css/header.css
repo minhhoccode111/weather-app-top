@@ -5,6 +5,10 @@
   align-items: center;
   justify-content: space-evenly;
   padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 #header_title {
@@ -97,4 +101,7 @@
   font-size: 1.2rem;
   text-align: center;
   line-height: 2rem;
+}
+#nav {
+  margin-top: 12rem;
 }

@@ -191,14 +191,46 @@
 
       <!-- FORECAST FOR 3 DAYS AFTER -->
       <div id="forecastday_ctn">
-        <!-- day-0 -->
+        <!-- day-0 example for 1 day -->
         <div class="forecastday">
           <h1 class="hero_title">
             <span data-forecastday-date="0">2023-08-7</span>
             forecast
           </h1>
-          <div class="element_ctn">
-            <span></span>
+
+          <div class="avg__ctn">
+            <!-- display avg information of a day -->
+            <!-- display 1 data -->
+            <div class="element_ctn">
+              <div class="element_icon_ctn">
+                <span class="material-symbols-rounded"> wb_twilight </span>
+              </div>
+              <div class="element__ctn">
+                <div class="element__title">Sunrise</div>
+                <div class="element__content">
+                  <div class="element__content__data">05:43 AM</div>
+                  <div class="element__content__unit"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- display 2 data -->
+            <div class="element_ctn">
+              <div class="element_icon_ctn">
+                <span class="material-symbols-rounded"> wb_twilight </span>
+              </div>
+              <div class="element__ctn">
+                <div class="element__title">Sunset</div>
+                <div class="element__content">
+                  <div class="element__content__data">05:43 PM</div>
+                  <div class="element__content__unit"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hours__ctn">
+            <!-- display each hour of a day -->
           </div>
         </div>
       </div>
