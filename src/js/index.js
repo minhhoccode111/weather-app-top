@@ -159,6 +159,7 @@ const Request = (() => {
       const giphyLink = data.data.images.original.url;
 
       Display.setGiphy(giphyLink);
+      Display.hideLoading();
     } catch (err) {
       console.log(err);
     }
@@ -218,7 +219,6 @@ const Request = (() => {
 
       Info.current.set(obj);
       Display.ui();
-      Display.hideLoading();
 
       // use giphy function, search with 'text' (current weather description)
       giphy(text);
@@ -229,7 +229,6 @@ const Request = (() => {
 
   return {
     weather,
-    giphy,
   };
 })();
 
