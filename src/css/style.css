@@ -12,8 +12,7 @@
   font-size: 10px;
   color: white;
 }
-* {
-}
+
 html {
   background-color: #333333;
 }
@@ -38,7 +37,4 @@ a {
 }
 .hidden {
   display: none;
-}
-img {
-  /* background-color: #fff; */
 }

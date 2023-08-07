@@ -184,7 +184,10 @@ const Request = (() => {
       const { name, country, localtime } = data.location;
 
       // Ignore to update UI if user search the same city
-      if (Info.current.get().name === name) throw new Error('Just search same city.');
+      if (Info.current.get().name === name) {
+        Display.hideLoading();
+        throw new Error('Just search same city.');
+      }
 
       let { text, icon } = data.current.condition;
 

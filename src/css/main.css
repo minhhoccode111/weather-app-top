@@ -16,8 +16,7 @@
   grid-template-rows: repeat(auto-fill, 1fr);
   gap: 2rem;
 }
-#main > * {
-}
+
 #main .box {
   display: grid;
   grid-template-columns: 3.2rem 1fr;
@@ -44,10 +43,10 @@ img[data-icon] {
 }
 
 /* display giphy image */
-#giphy__weather__ctn {
+/* #giphy__weather__ctn {
 }
 #giphy__weather__ctn h1 {
-}
+} */
 
 .giphy__img__ctn {
   width: 100%;

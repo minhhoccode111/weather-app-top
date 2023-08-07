@@ -2,6 +2,12 @@
 
 The Odin Project: Project Weather App
 
+## Live demo
+
+- [This project live demo](https://minhhoccode111.github.io/weatherAppTOP/)
+
+- [All projects' live demos](https://minhhoccode111.github.io/allProjectsLiveDemos/)
+
 ## What I've learned
 
 - Working with SVG
