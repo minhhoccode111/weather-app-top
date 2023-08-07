@@ -114,8 +114,14 @@ const Display = (() => {
   const showError = () => error.classList.remove('hidden');
   const hideError = () => error.classList.add('hidden');
 
-  const showLoading = () => loading.classList.remove('hidden');
-  const hideLoading = () => loading.classList.add('hidden');
+  const showLoading = () => {
+    console.log('show loading');
+    loading.classList.remove('hidden');
+  };
+  const hideLoading = () => {
+    console.log('hide loading');
+    loading.classList.add('hidden');
+  };
 
   return {
     ui,
@@ -140,6 +146,7 @@ const Request = (() => {
         // check if bad request
         if (response.status !== 200) {
           Display.showError();
+          Display.hideLoading();
           throw new Error('Bad Request');
         }
         Display.hideError();
@@ -187,12 +194,11 @@ const Request = (() => {
 
         Info.current.set(obj);
         Display.ui();
-        // console.table(obj);
+        Display.hideLoading();
       })
       .catch((err) => {
         console.log(err);
       });
-    Display.hideLoading();
   };
 
   return {
