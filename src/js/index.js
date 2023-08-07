@@ -54,6 +54,9 @@ const Display = (() => {
   // error message
   const error = document.querySelector('#error');
 
+  // loading component
+  const loading = document.querySelector('#loading');
+
   const ui = () => {
     // display ui base on current obj in Info
     const obj = Info.current.get();
@@ -111,11 +114,16 @@ const Display = (() => {
   const showError = () => error.classList.remove('hidden');
   const hideError = () => error.classList.add('hidden');
 
+  const showLoading = () => loading.classList.remove('hidden');
+  const hideLoading = () => loading.classList.add('hidden');
+
   return {
     ui,
     showError,
     hideError,
     switchUnit,
+    showLoading,
+    hideLoading,
   };
 })();
 
@@ -184,8 +192,7 @@ const Request = (() => {
       .catch((err) => {
         console.log(err);
       });
-    // TODO implement 'loading' component
-    // Display.hideLoading()
+    Display.hideLoading();
   };
 
   return {
@@ -201,8 +208,7 @@ const Request = (() => {
   const unitBtn = document.querySelector('.unit .change_unit');
 
   form.addEventListener('submit', (e) => {
-    // TODO implement a 'loading' component
-    // Display.showLoading()
+    Display.showLoading();
     e.preventDefault();
     Request.weather(input.value);
     input.value = '';
@@ -229,6 +235,7 @@ const Request = (() => {
   });
 
   window.addEventListener('DOMContentLoaded', (e) => {
+    Display.showLoading();
     Request.weather('Ho Chi Minh');
   });
 })();

@@ -5,6 +5,10 @@
   font-size: 4rem;
 }
 
+#main__ctn {
+  position: relative;
+}
+
 #main {
   margin-top: 2rem;
   padding: 2rem;
