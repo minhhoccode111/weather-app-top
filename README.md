@@ -33,3 +33,4 @@ The Odin Project: Project Weather App
 ## Ideas to implement
 
 - Using async|await
+- Forecast for the next 3 days

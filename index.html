@@ -83,158 +83,135 @@
         </div>
       </div>
 
-      <h1 class="hero_title">Current Weather</h1>
-      <div id="main" class="main">
-        <!-- MAIN weather -->
-        <div class="box">
-          <div class="box_icon">
-            <img src="#" alt="Weather image" data-icon />
+      <div id="main__ctn">
+        <h1 class="hero_title">Current Weather</h1>
+        <div id="main" class="main">
+          <!-- MAIN weather -->
+          <div class="box">
+            <div class="box_icon">
+              <img src="#" alt="Weather image" data-icon />
+            </div>
+            <div class="box_name">Weather</div>
+            <div class="box_data" data-text>Partly cloudy</div>
           </div>
-          <div class="box_name">Weather</div>
-          <div class="box_data" data-text>Partly cloudy</div>
+
+          <!-- COUNTRY -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> flag </span>
+            </div>
+            <div class="box_name">Country</div>
+            <div class="box_data" data-country>Viet Nam</div>
+          </div>
+
+          <!-- CITY -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> location_on </span>
+            </div>
+            <div class="box_name">City</div>
+            <div class="box_data" data-name>Ho Chi Minh City</div>
+          </div>
+
+          <!-- DATE -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> calendar_month </span>
+            </div>
+            <div class="box_name">Date</div>
+            <div class="box_data" data-date>8/5/2023</div>
+          </div>
+
+          <!-- TIME -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> schedule </span>
+            </div>
+            <div class="box_name">Time</div>
+            <div class="box_data" data-time>9:44:43 AM</div>
+          </div>
+
+          <!-- UV -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> water_lux </span>
+            </div>
+            <div class="box_name">UV</div>
+            <div class="box_data" data-uv>6</div>
+          </div>
+
+          <!-- TEMP -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> device_thermostat </span>
+            </div>
+            <div class="box_name">Temp</div>
+            <div class="box_data" data-unit="c" data-temp_c>32 &deg;C</div>
+            <div class="box_data hidden" data-unit="f" data-temp_f>100 &deg;F</div>
+          </div>
+
+          <!-- SPEED -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> toys_fan </span>
+            </div>
+            <div class="box_name">Wind speed</div>
+            <!-- use the same toggle with temperature -->
+            <div class="box_data" data-unit="c" data-wind_kph>22 kph</div>
+            <div class="box_data hidden" data-unit="f" data-wind_mph>13.6 mph</div>
+          </div>
+
+          <!-- HUMIDITY -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> humidity_percentage </span>
+            </div>
+            <div class="box_name">Humidity</div>
+            <div class="box_data" data-humidity>79 &#37;</div>
+          </div>
+
+          <!-- WIND DEGREE -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> open_with </span>
+            </div>
+            <div class="box_name">Wind degree</div>
+            <div class="box_data" data-wind_degree>270</div>
+          </div>
+
+          <!-- FEELS LIKE -->
+          <div class="box">
+            <div class="box_icon">
+              <span class="material-symbols-rounded"> question_mark </span>
+            </div>
+            <div class="box_name">Feels like</div>
+            <div class="box_data" data-unit="c" data-feelslike_c>32 &deg;C</div>
+            <div class="box_data hidden" data-unit="f" data-feelslike_f>100 &deg;F</div>
+          </div>
         </div>
 
-        <!-- COUNTRY -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> flag </span>
-          </div>
-          <div class="box_name">Country</div>
-          <div class="box_data" data-country>Viet Nam</div>
-        </div>
+        <!-- FORECAST FOR 3 DAYS AFTER -->
+        <div id="all_forecastday_ctn">
+          <!-- day-0 example for 1 day -->
+          <div class="one_forecastday_ctn">
+            <div class="whole__day__ctn">
+              <h1 class="hero_title">
+                <span data-forecastday-date>2023-08-7</span>
+                forecast
+              </h1>
 
-        <!-- CITY -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> location_on </span>
-          </div>
-          <div class="box_name">City</div>
-          <div class="box_data" data-name>Ho Chi Minh City</div>
-        </div>
-
-        <!-- DATE -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> calendar_month </span>
-          </div>
-          <div class="box_name">Date</div>
-          <div class="box_data" data-date>8/5/2023</div>
-        </div>
-
-        <!-- TIME -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> schedule </span>
-          </div>
-          <div class="box_name">Time</div>
-          <div class="box_data" data-time>9:44:43 AM</div>
-        </div>
-
-        <!-- UV -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> water_lux </span>
-          </div>
-          <div class="box_name">UV</div>
-          <div class="box_data" data-uv>6</div>
-        </div>
-
-        <!-- TEMP -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> device_thermostat </span>
-          </div>
-          <div class="box_name">Temp</div>
-          <div class="box_data" data-unit="c" data-temp_c>32 &deg;C</div>
-          <div class="box_data hidden" data-unit="f" data-temp_f>100 &deg;F</div>
-        </div>
-
-        <!-- SPEED -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> toys_fan </span>
-          </div>
-          <div class="box_name">Wind speed</div>
-          <!-- use the same toggle with temperature -->
-          <div class="box_data" data-unit="c" data-wind_kph>22 kph</div>
-          <div class="box_data hidden" data-unit="f" data-wind_mph>13.6 mph</div>
-        </div>
-
-        <!-- HUMIDITY -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> humidity_percentage </span>
-          </div>
-          <div class="box_name">Humidity</div>
-          <div class="box_data" data-humidity>79 &#37;</div>
-        </div>
-
-        <!-- WIND DEGREE -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> open_with </span>
-          </div>
-          <div class="box_name">Wind degree</div>
-          <div class="box_data" data-wind_degree>270</div>
-        </div>
-
-        <!-- FEELS LIKE -->
-        <div class="box">
-          <div class="box_icon">
-            <span class="material-symbols-rounded"> question_mark </span>
-          </div>
-          <div class="box_name">Feels like</div>
-          <div class="box_data" data-unit="c" data-feelslike_c>32 &deg;C</div>
-          <div class="box_data hidden" data-unit="f" data-feelslike_f>100 &deg;F</div>
-        </div>
-      </div>
-
-      <!-- FORECAST FOR 3 DAYS AFTER -->
-      <div id="forecastday_ctn">
-        <!-- day-0 example for 1 day -->
-        <div class="forecastday">
-          <h1 class="hero_title">
-            <span data-forecastday-date="0">2023-08-7</span>
-            forecast
-          </h1>
-
-          <div class="avg__ctn">
-            <!-- display avg information of a day -->
-            <!-- display 1 data -->
-            <div class="element_ctn">
-              <div class="element_icon_ctn">
-                <span class="material-symbols-rounded"> wb_twilight </span>
-              </div>
-              <div class="element__ctn">
-                <div class="element__title">Sunrise</div>
-                <div class="element__content">
-                  <div class="element__content__data">05:43 AM</div>
-                  <div class="element__content__unit"></div>
-                </div>
+              <div class="avg__ctn">
+                <!-- display avg information of a day -->
+                <!-- display 1 data -->
               </div>
             </div>
 
-            <!-- display 2 data -->
-            <div class="element_ctn">
-              <div class="element_icon_ctn">
-                <span class="material-symbols-rounded"> wb_twilight </span>
-              </div>
-              <div class="element__ctn">
-                <div class="element__title">Sunset</div>
-                <div class="element__content">
-                  <div class="element__content__data">05:43 PM</div>
-                  <div class="element__content__unit"></div>
-                </div>
-              </div>
+            <div class="hour__ctn">
+              <!-- display each hour of a day -->
             </div>
-          </div>
-
-          <div class="hours__ctn">
-            <!-- display each hour of a day -->
           </div>
         </div>
       </div>
-
       <div id="footer" class="footer">
         <div class="footer_title"></div>
         <div class="footer_content"></div>
