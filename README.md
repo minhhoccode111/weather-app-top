@@ -33,4 +33,7 @@ The Odin Project: Project Weather App
 ## Ideas to implement
 
 - Using async|await
+- Setup Webpack
 - Forecast for the next 3 days
+- Forecast for 24 hours a day
+- Leave forecast for later because it keep repeating what I've done (display data so many times ~.~)
