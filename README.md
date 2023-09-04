@@ -1,12 +1,12 @@
-# weatherAppTOP
+# Weather App The Odin Project
 
 The Odin Project: Project Weather App
 
 ## Live demo
 
-- [This project live demo](https://minhhoccode111.github.io/weatherAppTOP/)
+[View all projects' live demos](https://minhhoccode111.github.io/all-projects-live-demos/) 
 
-- [All projects' live demos](https://minhhoccode111.github.io/allProjectsLiveDemos/)
+[Weather Wise Weather App](https://minhhoccode111.github.io/weather-app-top/)
 
 ## What I've learned
 
