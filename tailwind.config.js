@@ -10,11 +10,6 @@ export default {
         lightFade: "#fbce0022",
         darkerFade: "#152A5555",
         darkFade: "#35579755",
-        black: "#000",
-        white: "#FFF",
-        red: "#f02f12",
-        green: "#53ce12",
-        blue: "#008ffd",
         transparent: "transparent",
       },
       aspectRatio: {
