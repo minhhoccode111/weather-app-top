@@ -4,9 +4,9 @@ The Odin Project: Project Weather App
 
 ## Live demo
 
-[View all projects' live demos](https://minhhoccode111.github.io/all-projects-live-demos/) 
+[View all projects' live demos](https://minhhoccode111.github.io/all-projects-live-demos/)
 
-[Weather Wise Weather App](https://minhhoccode111.github.io/weather-app-top/)
+[Weather Wise Weather App](https://weatherapptop.netlify.app/)
 
 ## What I've learned
 
