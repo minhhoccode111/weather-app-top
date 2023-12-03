@@ -2,17 +2,21 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 function App() {
   const weatherAPI = "fad6a35f4297467f9ca111534232707";
   const giphyAPI = "z800BvIjQqE4M0LUNitC9B6IGD9X5n3L";
-  // const [isCDegree, setIsCDegree] = useState(true);
+  const [isC, setIsC] = useState(true);
   const [currentLocation, setCurrentLocation] = useState("ho chi minh");
   const [isValidLocation, setIsValidLocation] = useState(true);
   const [currentWeather, setCurrentWeather] = useState("cloudy");
-  const [forecast, setForecast] = useState([]);
   const [currentGif, setCurrentGif] = useState("");
+  const [index, setIndex] = useState(0);
+  const [hour, setHour] = useState([]);
+
+  // extract data
+  // what they want to know: date, time, change of rain, tempc, tempf, icon
 
   // fetch weather
   useEffect(() => {
@@ -28,16 +32,30 @@ function App() {
           throw new Error();
         }
         const weatherJson = await weatherData.json();
-        setForecast([...weatherJson.forecast.forecastday]);
-        setCurrentWeather(
-          weatherJson.forecast.forecastday[0].day.condition.text,
-        );
+        const forecast = weatherJson.forecast.forecastday[index];
+        const {
+          day: {
+            condition: { icon, text },
+            avgtemp_c,
+            avgtemp_f,
+            daily_chance_of_rain,
+          },
+          hour,
+        } = forecast;
+        setCurrentWeather({
+          icon,
+          text,
+          avgtemp_c,
+          avgtemp_f,
+          daily_chance_of_rain,
+        });
+        setHour(hour);
       } catch (e) {
         console.log(e);
       }
     };
     fetchWeatherData();
-  }, [currentLocation]);
+  }, [currentLocation, index]);
 
   // fetch giphy
   useEffect(() => {
@@ -45,7 +63,7 @@ function App() {
       try {
         const giphyData = await fetch(
           `https://api.giphy.com/v1/gifs/translate?api_key=${giphyAPI}&s=${
-            currentWeather + " cat"
+            currentWeather.text + " cat"
           }`,
           { mode: "cors" },
         );
@@ -63,12 +81,15 @@ function App() {
   return (
     <>
       <Header
-        setCurrentLocation={setCurrentLocation}
+        isC={isC}
+        setIsC={setIsC}
         isValidLocation={isValidLocation}
+        setCurrentLocation={setCurrentLocation}
       />
       <Main
-        forecast={forecast}
         currentGif={currentGif}
+        setIndex={setIndex}
+        hour={hour}
         currentWeather={currentWeather}
       />
       {/* <Footer /> */}

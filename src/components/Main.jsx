@@ -1,24 +1,42 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-export default function Main({ currentWeather, forecast, currentGif }) {
-  const [index, setIndex] = useState(0);
-
+export default function Main({ setIndex, currentGif, currentWeather, hour }) {
   return (
-    <main>
+    <main className="w-full h-screen">
       <a href={currentGif}>gif link</a>
 
       <div>
-        <button className="text-xl px-4 py-2">today</button>
-        <button className="text-xl px-4 py-2">tomorrow</button>
-        <button className="text-xl px-4 py-2">overmorrow</button>
+        <button
+          type="button"
+          title="Today"
+          onClick={() => setIndex(0)}
+          className="px-4 py-2 capitalize"
+        >
+          today
+        </button>
+        <button
+          type="button"
+          title="Tomorrow"
+          onClick={() => setIndex(1)}
+          className="px-4 py-2 capitalize"
+        >
+          tomorrow
+        </button>
+        <button
+          type="button"
+          title="overmorrow"
+          onClick={() => setIndex(2)}
+          className="px-4 py-2 capitalize"
+        >
+          overmorrow
+        </button>
       </div>
     </main>
   );
 }
 
 Main.propTypes = {
-  currentWeather: PropTypes.string.isRequired,
-  forecast: PropTypes.array.isRequired,
+  setIndex: PropTypes.func.isRequired,
   currentGif: PropTypes.string.isRequired,
 };
