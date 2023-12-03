@@ -1,233 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
     <title>Weather Wise</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="./src/css/main.css" />
-    <link rel="stylesheet" href="./src/css/reset.css" />
-    <link rel="stylesheet" href="./src/css/style.css" />
-    <link rel="stylesheet" href="./src/css/footer.css" />
-    <link rel="stylesheet" href="./src/css/header.css" />
-    <link rel="stylesheet" href="./src/css/animation.css" />
-    <link rel="stylesheet" href="./src/css/responsive.css" />
-    <style>
-      .material-symbols-rounded {
-        font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' -25, 'opsz' 48;
-      }
-    </style>
+    <meta name="description" content="Weather Wise" />
+    <meta name="keywords" content="Weather Wise" />
+    <meta name="author" content="minhhoccode111" />
+    <meta name="copyright" content="minhhoccode111" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="1 days" />
+    <meta name="rating" content="general" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body>
-    <div id="wrapper">
-      <div id="header" class="header">
-        <div id="header_logo" class="header_logo center">
-          <div class="logo center">WW</div>
-        </div>
-
-        <div id="header_title" class="header_title">
-          <div class="title">Weather Wise</div>
-        </div>
-
-        <div id="header_filler"></div>
-      </div>
-
-      <div id="nav" class="nav">
-        <div id="header_search" class="header_search center">
-          <form class="center">
-            <div class="input_ctn">
-              <label for="search_city" class="center">
-                <input type="text" class="search_city" id="search_city" maxlength="40" placeholder="Search Location..." minlength="2" pattern="^\w{2,}[a-zA-Z\s,]+$" />
-
-                <button type="submit" id="search_submit" class="search_submit">
-                  <span class="material-symbols-rounded"> search </span>
-                </button>
-              </label>
-            </div>
-          </form>
-          <div id="error" class="hidden">
-            Location not found.
-            <br />
-            Search must be in the form of "City", "City, State" or "City, Country".
-          </div>
-        </div>
-
-        <div id="header_nav" class="header_nav center">
-          <div class="header_units">
-            <div class="unit">
-              <p>Light</p>
-            </div>
-            <div class="unit">
-              <a class="change_theme" type="button">
-                <span class="material-symbols-rounded"> toggle_on </span>
-              </a>
-            </div>
-            <div class="unit">
-              <p>Dark</p>
-            </div>
-          </div>
-
-          <div class="header_units">
-            <div class="unit">
-              <p>&deg;C</p>
-            </div>
-            <div class="unit">
-              <a class="change_unit" type="button">
-                <span class="material-symbols-rounded"> toggle_off </span>
-              </a>
-            </div>
-            <div class="unit">
-              <p>&deg;F</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="main__ctn">
-        <h1 class="hero_title">Current Weather</h1>
-        <div id="main" class="main">
-          <!-- MAIN weather -->
-          <div class="box">
-            <div class="box_icon">
-              <img src="#" alt="Weather image" data-icon />
-            </div>
-            <div class="box_name">Weather</div>
-            <div class="box_data" data-text>Partly cloudy</div>
-          </div>
-
-          <!-- COUNTRY -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> flag </span>
-            </div>
-            <div class="box_name">Country</div>
-            <div class="box_data" data-country>Viet Nam</div>
-          </div>
-
-          <!-- CITY -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> location_on </span>
-            </div>
-            <div class="box_name">City</div>
-            <div class="box_data" data-name>Ho Chi Minh City</div>
-          </div>
-
-          <!-- DATE -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> calendar_month </span>
-            </div>
-            <div class="box_name">Date</div>
-            <div class="box_data" data-date>8/5/2023</div>
-          </div>
-
-          <!-- TIME -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> schedule </span>
-            </div>
-            <div class="box_name">Time</div>
-            <div class="box_data" data-time>9:44:43 AM</div>
-          </div>
-
-          <!-- UV -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> water_lux </span>
-            </div>
-            <div class="box_name">UV</div>
-            <div class="box_data" data-uv>6</div>
-          </div>
-
-          <!-- TEMP -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> device_thermostat </span>
-            </div>
-            <div class="box_name">Temp</div>
-            <div class="box_data" data-unit="c" data-temp_c>32 &deg;C</div>
-            <div class="box_data hidden" data-unit="f" data-temp_f>100 &deg;F</div>
-          </div>
-
-          <!-- SPEED -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> toys_fan </span>
-            </div>
-            <div class="box_name">Wind speed</div>
-            <!-- use the same toggle with temperature -->
-            <div class="box_data" data-unit="c" data-wind_kph>22 kph</div>
-            <div class="box_data hidden" data-unit="f" data-wind_mph>13.6 mph</div>
-          </div>
-
-          <!-- HUMIDITY -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> humidity_percentage </span>
-            </div>
-            <div class="box_name">Humidity</div>
-            <div class="box_data" data-humidity>79 &#37;</div>
-          </div>
-
-          <!-- WIND DEGREE -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> open_with </span>
-            </div>
-            <div class="box_name">Wind degree</div>
-            <div class="box_data" data-wind_degree>270</div>
-          </div>
-
-          <!-- FEELS LIKE -->
-          <div class="box">
-            <div class="box_icon">
-              <span class="material-symbols-rounded"> question_mark </span>
-            </div>
-            <div class="box_name">Feels like</div>
-            <div class="box_data" data-unit="c" data-feelslike_c>32 &deg;C</div>
-            <div class="box_data hidden" data-unit="f" data-feelslike_f>100 &deg;F</div>
-          </div>
-        </div>
-
-        <!-- Display Giphy -->
-        <div id="giphy__weather__ctn">
-          <h1 class="hero_title">The weather be like*</h1>
-
-          <div class="giphy__img__ctn">
-            <img id="giphy__img" src="#" alt="Weather seems like this." />
-          </div>
-        </div>
-
-        <div id="loading" class="center">
-          <div class="lds-spinner">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-      </div>
-      <div id="footer" class="footer">
-        <div class="footer_title"></div>
-        <div class="footer_content">
-          Made with
-          <span class="material-symbols-rounded"> favorite </span>
-          by
-          <a href="https://github.com/minhhoccode111" target="_blank" rel="noopener">minhhoccode</a>.
-          <span class="smile"> (: </span>
-        </div>
-        <div class="footer_nav"></div>
-      </div>
-    </div>
-    <script type="module" src="./src/js/index.js" defer></script>
+    <div id="root" class=""></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
