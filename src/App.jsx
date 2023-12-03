@@ -10,10 +10,10 @@ function App() {
   const [isC, setIsC] = useState(true);
   const [currentLocation, setCurrentLocation] = useState("ho chi minh");
   const [isValidLocation, setIsValidLocation] = useState(true);
-  const [currentWeather, setCurrentWeather] = useState("cloudy");
+  const [currentWeather, setCurrentWeather] = useState({});
   const [currentGif, setCurrentGif] = useState("");
   const [index, setIndex] = useState(0);
-  const [hour, setHour] = useState([]);
+  const [days, setDays] = useState([]);
 
   // extract data
   // what they want to know: date, time, change of rain, tempc, tempf, icon
@@ -32,24 +32,41 @@ function App() {
           throw new Error();
         }
         const weatherJson = await weatherData.json();
-        const forecast = weatherJson.forecast.forecastday[index];
-        const {
-          day: {
-            condition: { icon, text },
+        const forecast = weatherJson.forecast.forecastday;
+        const days = forecast.reduce((total, current) => {
+          const {
+            date,
+            day: {
+              condition: { icon, text },
+              avgtemp_c,
+              avgtemp_f,
+              daily_chance_of_rain,
+              maxtemp_c,
+              maxtemp_f,
+              mintemp_c,
+              mintemp_f,
+            },
+            hour,
+          } = current;
+          total.push({
+            date,
+            // because icon will be used in components folder
+            icon: "/src/assets" + icon.match(/(?<=\.com).*/).join(""),
+            id: Math.random().toString(32),
+            text,
             avgtemp_c,
             avgtemp_f,
             daily_chance_of_rain,
-          },
-          hour,
-        } = forecast;
-        setCurrentWeather({
-          icon,
-          text,
-          avgtemp_c,
-          avgtemp_f,
-          daily_chance_of_rain,
-        });
-        setHour(hour);
+            hour,
+            maxtemp_c,
+            maxtemp_f,
+            mintemp_c,
+            mintemp_f,
+          });
+          return total;
+        }, []);
+        setDays(days);
+        setCurrentWeather(days[0]);
       } catch (e) {
         console.log(e);
       }
@@ -89,8 +106,8 @@ function App() {
       <Main
         currentGif={currentGif}
         setIndex={setIndex}
-        hour={hour}
         currentWeather={currentWeather}
+        days={days}
       />
       {/* <Footer /> */}
     </>

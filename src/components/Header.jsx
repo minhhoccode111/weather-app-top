@@ -35,7 +35,7 @@ export default function Header({
             Search
           </button>
           {!isValidLocation && (
-            <p className="text-red-500 absolute top-full bg-lightFade p-2">
+            <p className="text-red-500 rounded absolute top-full p-2">
               Please enter a valid city name
             </p>
           )}

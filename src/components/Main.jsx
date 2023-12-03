@@ -1,37 +1,36 @@
-import { useState } from "react";
+// import { useState } from "react";
 import PropTypes from "prop-types";
+import DayCard from "./DayCard";
 
-export default function Main({ setIndex, currentGif, currentWeather, hour }) {
+export default function Main({ setIndex, currentGif, currentWeather, days }) {
+  console.log(currentWeather.icon);
   return (
-    <main className="w-full h-screen">
-      <a href={currentGif}>gif link</a>
-
-      <div>
-        <button
-          type="button"
-          title="Today"
-          onClick={() => setIndex(0)}
-          className="px-4 py-2 capitalize"
-        >
-          today
-        </button>
-        <button
-          type="button"
-          title="Tomorrow"
-          onClick={() => setIndex(1)}
-          className="px-4 py-2 capitalize"
-        >
-          tomorrow
-        </button>
-        <button
-          type="button"
-          title="overmorrow"
-          onClick={() => setIndex(2)}
-          className="px-4 py-2 capitalize"
-        >
-          overmorrow
-        </button>
-      </div>
+    <main className="grid grid-cols-2 grid-rows-2 gap-4">
+      <section></section>
+      <section></section>
+      <section>
+        <div>
+          <img
+            src={currentGif}
+            alt="gif"
+            className="w-full h-full block object-cover"
+          />
+        </div>
+      </section>
+      <section>
+        <nav>
+          <ul className="flex items-center justify-between">
+            {days.map((day, index) => (
+              <DayCard
+                key={day.id}
+                index={index}
+                cardClickCb={() => setIndex(index)}
+                day={day}
+              />
+            ))}
+          </ul>
+        </nav>
+      </section>
     </main>
   );
 }
@@ -39,4 +38,6 @@ export default function Main({ setIndex, currentGif, currentWeather, hour }) {
 Main.propTypes = {
   setIndex: PropTypes.func.isRequired,
   currentGif: PropTypes.string.isRequired,
+  currentWeather: PropTypes.object.isRequired,
+  days: PropTypes.array.isRequired,
 };
