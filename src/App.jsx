@@ -10,10 +10,10 @@ function App() {
   const [isC, setIsC] = useState(true);
   const [currentLocation, setCurrentLocation] = useState("ho chi minh");
   const [isValidLocation, setIsValidLocation] = useState(true);
-  const [currentWeather, setCurrentWeather] = useState({});
   const [currentGif, setCurrentGif] = useState("");
-  const [index, setIndex] = useState(0);
+  const [currentIndex, setIndex] = useState(0);
   const [days, setDays] = useState([]);
+  const currentWeather = days[currentIndex] || {};
 
   // extract data
   // what they want to know: date, time, change of rain, tempc, tempf, icon
@@ -50,7 +50,7 @@ function App() {
           } = current;
           total.push({
             date,
-            // because icon will be used in components folder
+            // access icon from root
             icon: "/src/assets" + icon.match(/(?<=\.com).*/).join(""),
             id: Math.random().toString(32),
             text,
@@ -66,13 +66,12 @@ function App() {
           return total;
         }, []);
         setDays(days);
-        setCurrentWeather(days[0]);
       } catch (e) {
         console.log(e);
       }
     };
     fetchWeatherData();
-  }, [currentLocation, index]);
+  }, [currentLocation]);
 
   // fetch giphy
   useEffect(() => {
@@ -80,7 +79,7 @@ function App() {
       try {
         const giphyData = await fetch(
           `https://api.giphy.com/v1/gifs/translate?api_key=${giphyAPI}&s=${
-            currentWeather.text + " cat"
+            days[currentIndex].text + " cat"
           }`,
           { mode: "cors" },
         );
@@ -94,7 +93,7 @@ function App() {
       }
     };
     fetchGiphyData();
-  }, [currentWeather]);
+  }, [days, currentIndex]);
   return (
     <>
       <Header
@@ -106,8 +105,10 @@ function App() {
       <Main
         currentGif={currentGif}
         setIndex={setIndex}
+        currentIndex={currentIndex}
         currentWeather={currentWeather}
         days={days}
+        isC={isC}
       />
       {/* <Footer /> */}
     </>
