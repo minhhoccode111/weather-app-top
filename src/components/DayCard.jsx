@@ -5,9 +5,9 @@ export default function DayCard({ day, cardClickCb, index, isC, isDisabled }) {
     <button
       disabled={isDisabled}
       className={
-        "text-darker flex flex-col items-center justify-between gap-1 bg-lightFade p-4 rounded-lg transition-opacity" +
+        "text-darker flex flex-col items-center justify-between gap-1 bg-light p-4 rounded-lg transition-opacity max-w-[200px]" +
         " " +
-        (isDisabled ? "opacity-60 cursor-not-allowed" : "")
+        (isDisabled ? "opacity-80 cursor-not-allowed" : "")
       }
       onClick={cardClickCb}
     >
@@ -24,7 +24,7 @@ export default function DayCard({ day, cardClickCb, index, isC, isDisabled }) {
       </p>
       <p className="flex items-baseline justify-between gap-4">
         <strong className="">{isC ? day.maxtemp_c : day.maxtemp_f}</strong>
-        <p className="text-sm">{isC ? day.mintemp_c : day.mintemp_f}</p>
+        <span className="text-sm">{isC ? day.mintemp_c : day.mintemp_f}</span>
       </p>
     </button>
   );

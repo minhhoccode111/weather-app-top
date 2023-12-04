@@ -15,9 +15,6 @@ function App() {
   const [days, setDays] = useState([]);
   const currentWeather = days[currentIndex] || {};
 
-  // extract data
-  // what they want to know: date, time, change of rain, tempc, tempf, icon
-
   // fetch weather
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -57,7 +54,10 @@ function App() {
             avgtemp_c,
             avgtemp_f,
             daily_chance_of_rain,
-            hour,
+            hours: hour.map((item) => ({
+              ...item,
+              id: Math.random().toString(32),
+            })),
             maxtemp_c,
             maxtemp_f,
             mintemp_c,

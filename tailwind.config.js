@@ -12,9 +12,9 @@ export default {
         darkFade: "#35579755",
         transparent: "transparent",
       },
-      aspectRatio: {
-        "3/1": "3/1.2",
-        "3/4": "3/4",
+      gridTemplateColumns: {
+        autoFit: "repeat(auto-fit, minmax(100px, 1fr))",
+        autoFill: "repeat(auto-fill, minmax(100px, 1fr))",
       },
     },
   },
