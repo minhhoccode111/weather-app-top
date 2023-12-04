@@ -7,7 +7,7 @@ export default {
         darker: "#152A55",
         dark: "#355797",
         light: "#FBCE00",
-        lightFade: "#fbce0022",
+        lightFade: "#fbce0050",
         darkerFade: "#152A5555",
         darkFade: "#35579755",
         transparent: "transparent",

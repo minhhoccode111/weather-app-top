@@ -1,8 +1,15 @@
 import PropTypes from "prop-types";
+import Tilt from "react-parallax-tilt";
 
 export default function HourCard({ hour, isC }) {
   return (
-    <li className="border p-2">
+    <Tilt
+      glareEnable={true}
+      glareMaxOpacity={1}
+      glareColor="#fff"
+      glarePosition="bottom"
+      className="border rounded-lg p-2 flex flex-col items-center bg-white text-darker"
+    >
       <header>
         <h3 className="font-bold">{hour.time.replace(/^.*\s/g, "")}</h3>
       </header>
@@ -16,11 +23,11 @@ export default function HourCard({ hour, isC }) {
       <p className="">
         <strong className="">{isC ? hour.temp_c : hour.temp_f}</strong>
       </p>
-    </li>
+    </Tilt>
   );
 }
 
 HourCard.propTypes = {
-  hour: PropTypes.object.isRequired,
   isC: PropTypes.bool.isRequired,
+  hour: PropTypes.object.isRequired,
 };

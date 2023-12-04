@@ -2,24 +2,27 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
-// import Footer from "./components/Footer";
 
 function App() {
-  const weatherAPI = "fad6a35f4297467f9ca111534232707";
-  const giphyAPI = "z800BvIjQqE4M0LUNitC9B6IGD9X5n3L";
   const [isC, setIsC] = useState(true);
-  const [currentLocation, setCurrentLocation] = useState("ho chi minh");
-  const [isValidLocation, setIsValidLocation] = useState(true);
-  const [currentGif, setCurrentGif] = useState("");
-  const [currentIndex, setIndex] = useState(0);
   const [days, setDays] = useState([]);
+  const [currentIndex, setIndex] = useState(0);
+  const [currentGif, setCurrentGif] = useState("");
+  const [isOpenAbout, setIsOpenAbout] = useState(false);
+  const [isFetchingGif, setIsFetchingGif] = useState(false);
+  const [isValidLocation, setIsValidLocation] = useState(true);
+  const [currentLocation, setCurrentLocation] = useState("ho chi minh");
+
   const currentWeather = days[currentIndex] || {};
+  const giphyAPI = "z800BvIjQqE4M0LUNitC9B6IGD9X5n3L";
+  const weatherAPI = "fad6a35f4297467f9ca111534232707";
 
   // fetch weather
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
         setIsValidLocation(true);
+        setIsFetchingGif(true);
         const weatherData = await fetch(
           `https://api.weatherapi.com/v1/forecast.json?key=${weatherAPI}&q=${currentLocation}&days=3`,
           { mode: "cors" },
@@ -67,7 +70,7 @@ function App() {
         }, []);
         setDays(days);
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
     };
     fetchWeatherData();
@@ -76,6 +79,7 @@ function App() {
   // fetch giphy
   useEffect(() => {
     const fetchGiphyData = async () => {
+      setIsFetchingGif(true);
       try {
         const giphyData = await fetch(
           `https://api.giphy.com/v1/gifs/translate?api_key=${giphyAPI}&s=${
@@ -88,8 +92,9 @@ function App() {
         }
         const giphyJson = await giphyData.json();
         setCurrentGif(giphyJson.data.images.original.url);
+        setIsFetchingGif(false);
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
     };
     fetchGiphyData();
@@ -99,18 +104,20 @@ function App() {
       <Header
         isC={isC}
         setIsC={setIsC}
+        isOpenAbout={isOpenAbout}
+        setIsOpenAbout={setIsOpenAbout}
         isValidLocation={isValidLocation}
         setCurrentLocation={setCurrentLocation}
       />
       <Main
-        currentGif={currentGif}
-        setIndex={setIndex}
-        currentIndex={currentIndex}
-        currentWeather={currentWeather}
-        days={days}
         isC={isC}
+        days={days}
+        setIndex={setIndex}
+        currentGif={currentGif}
+        currentIndex={currentIndex}
+        isFetchingGif={isFetchingGif}
+        currentWeather={currentWeather}
       />
-      {/* <Footer /> */}
     </>
   );
 }

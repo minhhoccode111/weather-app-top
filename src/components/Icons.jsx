@@ -84,3 +84,161 @@ Close.propTypes = {
 };
 
 Close.defaultProps = normal;
+
+export const Search = (props) => (
+  <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path
+      fill={props.color}
+      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0"
+    ></path>
+  </svg>
+);
+
+Search.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  color: PropTypes.string,
+};
+
+Search.defaultProps = normal;
+
+export const Loading = (props) => (
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <circle cx="12" cy="2" r="0" fill={props.color}>
+      <animate
+        attributeName="r"
+        begin="0"
+        calcMode="spline"
+        dur="1s"
+        keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+        repeatCount="indefinite"
+        values="0;2;0;0"
+      ></animate>
+    </circle>
+    <circle
+      cx="12"
+      cy="2"
+      r="0"
+      fill={props.color}
+      transform="rotate(45 12 12)"
+    >
+      <animate
+        attributeName="r"
+        begin="0.125s"
+        calcMode="spline"
+        dur="1s"
+        keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+        repeatCount="indefinite"
+        values="0;2;0;0"
+      ></animate>
+    </circle>
+    <circle
+      cx="12"
+      cy="2"
+      r="0"
+      fill={props.color}
+      transform="rotate(90 12 12)"
+    >
+      <animate
+        attributeName="r"
+        begin="0.25s"
+        calcMode="spline"
+        dur="1s"
+        keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+        repeatCount="indefinite"
+        values="0;2;0;0"
+      ></animate>
+    </circle>
+    <circle
+      cx="12"
+      cy="2"
+      r="0"
+      fill={props.color}
+      transform="rotate(135 12 12)"
+    >
+      <animate
+        attributeName="r"
+        begin="0.375s"
+        calcMode="spline"
+        dur="1s"
+        keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+        repeatCount="indefinite"
+        values="0;2;0;0"
+      ></animate>
+    </circle>
+    <circle
+      cx="12"
+      cy="2"
+      r="0"
+      fill={props.color}
+      transform="rotate(180 12 12)"
+    >
+      <animate
+        attributeName="r"
+        begin="0.5s"
+        calcMode="spline"
+        dur="1s"
+        keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+        repeatCount="indefinite"
+        values="0;2;0;0"
+      ></animate>
+    </circle>
+    <circle
+      cx="12"
+      cy="2"
+      r="0"
+      fill={props.color}
+      transform="rotate(225 12 12)"
+    >
+      <animate
+        attributeName="r"
+        begin="0.625s"
+        calcMode="spline"
+        dur="1s"
+        keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+        repeatCount="indefinite"
+        values="0;2;0;0"
+      ></animate>
+    </circle>
+    <circle
+      cx="12"
+      cy="2"
+      r="0"
+      fill={props.color}
+      transform="rotate(270 12 12)"
+    >
+      <animate
+        attributeName="r"
+        begin="0.75s"
+        calcMode="spline"
+        dur="1s"
+        keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+        repeatCount="indefinite"
+        values="0;2;0;0"
+      ></animate>
+    </circle>
+    <circle
+      cx="12"
+      cy="2"
+      r="0"
+      fill={props.color}
+      transform="rotate(315 12 12)"
+    >
+      <animate
+        attributeName="r"
+        begin="0.875s"
+        calcMode="spline"
+        dur="1s"
+        keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+        repeatCount="indefinite"
+        values="0;2;0;0"
+      ></animate>
+    </circle>
+  </svg>
+);
+Loading.defaultProps = normal;
+Loading.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  color: PropTypes.string,
+};
