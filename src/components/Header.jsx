@@ -2,14 +2,14 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Search, Close } from "./Icons";
 
-export default function Header({
+const Header = ({
   isC,
   setIsC,
   isOpenAbout,
   setIsOpenAbout,
   isValidLocation,
   setCurrentLocation,
-}) {
+}) => {
   const [inputValue, setInputValue] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -105,7 +105,7 @@ export default function Header({
       </div>
     </header>
   );
-}
+};
 
 Header.defaultProps = {
   isValidLocation: true,
@@ -120,3 +120,4 @@ Header.propTypes = {
   isValidLocation: PropTypes.bool.isRequired,
   setCurrentLocation: PropTypes.func.isRequired,
 };
+export default Header;

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Tilt from "react-parallax-tilt";
 
-export default function HourCard({ hour, isC }) {
+const HourCard = ({ hour, isC }) => {
   return (
     <Tilt
       glareEnable={true}
@@ -15,7 +15,7 @@ export default function HourCard({ hour, isC }) {
       </header>
       <div className="w-12">
         <img
-          src={"/src/assets/" + hour.condition.icon.split(".com/")[1]}
+          src={hour.condition.icon.split(".com")[1]}
           className="w-full block"
         />
       </div>
@@ -25,9 +25,10 @@ export default function HourCard({ hour, isC }) {
       </p>
     </Tilt>
   );
-}
+};
 
 HourCard.propTypes = {
   isC: PropTypes.bool.isRequired,
   hour: PropTypes.object.isRequired,
 };
+export default HourCard;

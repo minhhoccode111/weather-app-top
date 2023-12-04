@@ -1,10 +1,10 @@
-// import { useState } from "react";
+// import React from "react";
 import PropTypes from "prop-types";
 import DayCard from "./DayCard";
 import HourCard from "./HourCard";
 import { Loading } from "./Icons";
 
-export default function Main({
+const Main = ({
   isC,
   days,
   setIndex,
@@ -12,7 +12,7 @@ export default function Main({
   currentIndex,
   isFetchingGif,
   currentWeather,
-}) {
+}) => {
   return (
     <main className="bg-dark">
       <section className="text-light sm:pt-8">
@@ -73,7 +73,7 @@ export default function Main({
       </section>
     </main>
   );
-}
+};
 
 Main.propTypes = {
   isC: PropTypes.bool.isRequired,
@@ -84,3 +84,4 @@ Main.propTypes = {
   currentIndex: PropTypes.number.isRequired,
   currentWeather: PropTypes.object.isRequired,
 };
+export default Main;

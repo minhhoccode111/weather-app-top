@@ -1,28 +1,29 @@
-import Artwork from "./../assets/weather-img.jpg";
 import PropTypes from "prop-types";
+// import React from "react";
+// import Artwork from "./../assets/weather-img.jpg";
 
-export const WeatherImage = (props) => {
-  return (
-    <div className={props.divClass}>
-      <img
-        className={props.imgClass}
-        style={{ width: "100%", display: "block" }}
-        src={Artwork}
-        alt="Artwork"
-      />
-    </div>
-  );
-};
+// export const WeatherImage = (props) => {
+//   return (
+//     <div className={props.divClass}>
+//       <img
+//         className={props.imgClass}
+//         style={{ width: "100%", display: "block" }}
+//         src={Artwork}
+//         alt="Artwork"
+//       />
+//     </div>
+//   );
+// };
 
-WeatherImage.propTypes = {
-  divClass: PropTypes.string,
-  imgClass: PropTypes.string,
-};
+// WeatherImage.propTypes = {
+//   divClass: PropTypes.string,
+//   imgClass: PropTypes.string,
+// };
 
-WeatherImage.defaultProps = {
-  divClass: "",
-  imgClass: "w-full block",
-};
+// WeatherImage.defaultProps = {
+//   divClass: "",
+//   imgClass: "w-full block",
+// };
 
 export const Github = (props) => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>

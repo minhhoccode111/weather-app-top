@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Tilt from "react-parallax-tilt";
 
-export default function DayCard({ day, cardClickCb, index, isC, isDisabled }) {
+const DayCard = ({ day, cardClickCb, index, isC, isDisabled }) => {
   return (
     <Tilt
       glareEnable={true}
@@ -37,7 +37,7 @@ export default function DayCard({ day, cardClickCb, index, isC, isDisabled }) {
       </button>
     </Tilt>
   );
-}
+};
 
 DayCard.propTypes = {
   isC: PropTypes.bool.isRequired,
@@ -46,3 +46,4 @@ DayCard.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
   cardClickCb: PropTypes.func.isRequired,
 };
+export default DayCard;

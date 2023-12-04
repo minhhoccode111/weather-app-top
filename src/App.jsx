@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
-function App() {
+const App = () => {
   const [isC, setIsC] = useState(true);
   const [days, setDays] = useState([]);
   const [currentIndex, setIndex] = useState(0);
@@ -51,7 +51,7 @@ function App() {
           total.push({
             date,
             // access icon from root
-            icon: "/src/assets" + icon.match(/(?<=\.com).*/).join(""),
+            icon: icon.split(".com")[1],
             id: Math.random().toString(32),
             text,
             avgtemp_c,
@@ -120,6 +120,6 @@ function App() {
       />
     </>
   );
-}
+};
 
 export default App;
