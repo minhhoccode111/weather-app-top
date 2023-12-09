@@ -12,9 +12,15 @@ const Main = ({
   currentIndex,
   isFetchingGif,
   currentWeather,
+  currentCityName,
 }) => {
   return (
     <main className="bg-dark">
+      <header>
+        <h1 className="text-center text-3xl text-light p-4">
+          {currentCityName}
+        </h1>
+      </header>
       <section className="text-light sm:pt-8">
         <div className="flex flex-col sm:flex-row gap-4 justify-evenly max-w-5xl mx-auto">
           <div className="flex flex-col items-center gap-1 sm:gap-4 bg-darker sm:rounded-lg min-w-[200px] p-4">
@@ -83,5 +89,6 @@ Main.propTypes = {
   isFetchingGif: PropTypes.bool.isRequired,
   currentIndex: PropTypes.number.isRequired,
   currentWeather: PropTypes.object.isRequired,
+  currentCityName: PropTypes.string.isRequired,
 };
 export default Main;

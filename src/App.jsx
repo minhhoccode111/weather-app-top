@@ -9,12 +9,15 @@ const App = () => {
   const [currentIndex, setIndex] = useState(0);
   const [currentGif, setCurrentGif] = useState("");
   const [isOpenAbout, setIsOpenAbout] = useState(false);
-  const [isFetchingGif, setIsFetchingGif] = useState(false);
+  const [isFetchingGif, setIsFetchingGif] = useState(true);
   const [isValidLocation, setIsValidLocation] = useState(true);
   const [currentLocation, setCurrentLocation] = useState("ho chi minh");
+  const [currentCityName, setCurrentCityName] = useState(
+    "Asia - Viet Nam - Ho Chi Minh City",
+  );
 
   const currentWeather = days[currentIndex] || {};
-  const giphyAPI = "z800BvIjQqE4M0LUNitC9B6IGD9X5n3L";
+  const giphyAPI = "Niu936Hs3eI8XlsMs1AaLxJcwP1A5h9X";
   const weatherAPI = "fad6a35f4297467f9ca111534232707";
 
   // fetch weather
@@ -28,10 +31,16 @@ const App = () => {
           { mode: "cors" },
         );
         if (weatherData.status !== 200) {
-          setIsValidLocation(false);
-          throw new Error();
+          throw new Error("Something went wrong");
         }
         const weatherJson = await weatherData.json();
+        const cityName =
+          weatherJson.location.tz_id.split("/")[0] +
+          " - " +
+          weatherJson.location.country +
+          " - " +
+          weatherJson.location.name;
+        setCurrentCityName(cityName);
         const forecast = weatherJson.forecast.forecastday;
         const days = forecast.reduce((total, current) => {
           const {
@@ -70,6 +79,7 @@ const App = () => {
         }, []);
         setDays(days);
       } catch (e) {
+        setIsValidLocation(false);
         // console.log(e);
       }
     };
@@ -79,12 +89,9 @@ const App = () => {
   // fetch giphy
   useEffect(() => {
     const fetchGiphyData = async () => {
-      setIsFetchingGif(true);
       try {
         const giphyData = await fetch(
-          `https://api.giphy.com/v1/gifs/translate?api_key=${giphyAPI}&s=${
-            days[currentIndex].text + " cat"
-          }`,
+          `https://api.giphy.com/v1/gifs/translate?api_key=${giphyAPI}&s=${days[currentIndex].text}`,
           { mode: "cors" },
         );
         if (giphyData.status !== 200) {
@@ -94,10 +101,14 @@ const App = () => {
         setCurrentGif(giphyJson.data.images.original.url);
         setIsFetchingGif(false);
       } catch (e) {
+        setIsFetchingGif(true);
         // console.log(e);
       }
     };
     fetchGiphyData();
+    return () => {
+      setIsFetchingGif(true);
+    };
   }, [days, currentIndex]);
   return (
     <>
@@ -117,6 +128,7 @@ const App = () => {
         currentIndex={currentIndex}
         isFetchingGif={isFetchingGif}
         currentWeather={currentWeather}
+        currentCityName={currentCityName}
       />
     </>
   );

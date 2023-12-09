@@ -14,6 +14,7 @@ const Header = ({
   const handleSubmit = (event) => {
     event.preventDefault();
     setCurrentLocation(inputValue);
+    setInputValue("");
   };
   return (
     <header className="flex flex-col gap-4 p-4 text-3xl bg-light text-darker">
